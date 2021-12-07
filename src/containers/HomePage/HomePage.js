@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
 import DataTable from "../../components/DataTable/DataTable";
 
-const HomePage = (props) => {
-  useEffect(() => {
-    console.log(props.countries);
-  }, [props.countries]);
+import styles from "./HomePage.module.css";
 
+const HomePage = (props) => {
   return (
     <>
-      <p>home page !</p>
-      <DataTable />
+      <h1 className={styles.title}>home page</h1>
+      <DataTable countries={props.countries} />
     </>
   );
 };
