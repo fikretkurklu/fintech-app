@@ -30,7 +30,7 @@ const CapitalSearchPage = (props) => {
   return (
     <>
       <Helmet>
-        <title>{props.title} - UBFsoft</title>
+        <title>{props.title} - Fintech</title>
       </Helmet>
       <div className={styles.page}>
         <h1 className={styles.title}>search by capital</h1>

@@ -7,7 +7,7 @@ const Navi = () => {
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">UBFsoft App</Navbar.Brand>
+          <Navbar.Brand href="#home">Fintech App</Navbar.Brand>
           <Nav className="me-auto">
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
