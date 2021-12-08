@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
+import Navi from "./components/Navi/Navi";
 import HomePage from "./containers/HomePage/HomePage";
 import CapitalSearchPage from "./containers/CapitalSearchPage/CapitalSearchPage";
+import KeywordSearchPage from "./containers/KeywordSearchPage/KeywordSearchPage";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
-  const [isDataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     axios.get("https://restcountries.com/v2/all").then((res) => {
@@ -17,30 +18,40 @@ const App = () => {
         region: cs.region,
         flag: cs.flags.png,
       }));
-      setDataLoaded(true);
       setCountries(countriesArray);
     });
   }, []);
 
   return (
     <>
-      {isDataLoaded ? (
-        <Router>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<HomePage countries={countries} />}
-            />
-            <Route
-              path="/search-capital"
-              element={<CapitalSearchPage countries={countries} />}
-            />
-          </Routes>
-        </Router>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <Router>
+        <Navi />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<HomePage title="Home" countries={countries} />}
+          />
+          <Route
+            path="/search-capital"
+            element={
+              <CapitalSearchPage
+                title="Search by capital"
+                countries={countries}
+              />
+            }
+          />
+          <Route
+            path="/search-keyword"
+            element={
+              <KeywordSearchPage
+                title="Search by keyword"
+                countries={countries}
+              />
+            }
+          />
+        </Routes>
+      </Router>
     </>
   );
 };
